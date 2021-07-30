@@ -9,3 +9,7 @@ console.log(name,age);
 let arr1 = [1,2,3];
 let [a,b,c] = arr1;
 console.log(a,b,c);
+//部分解构
+
+let [,e,f] = arr1;
+console.log(e,f); 
