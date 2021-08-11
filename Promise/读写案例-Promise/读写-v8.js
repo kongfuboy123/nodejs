@@ -1,6 +1,6 @@
 const fs = require('fs').promises;//直接把fs全部promise化
 const path = require('path');
-const util = require('util');
+
 let pathFile1 = path.join(__dirname,'files','1.txt');
 let pathFile2 = path.join(__dirname,'files','2.txt');
 let pathFile3 = path.join(__dirname,'files','3.txt');
