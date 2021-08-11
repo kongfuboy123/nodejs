@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    function onloadImg(src){
+    const p = new Promise((resolve, reject)=>{
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = function(){
+      resolve(img);
+    }
+
+    img.onerror = function(){
+      
+      reject(new Error(`Error loading, url is : ${src}`));
+    }
+    
+  })
+  return p;
+}
+const src1 = 'https://seopic.699pic.com/photo/40007/6959.jpg_wh1200.jpg';
+const src2 = 'https://seopic.699pic.com/photo/40008/0111.jpg_wh1200.jpg';
+let box = document.getElementById('box');
+const p1 = onloadImg(src1);
+const p2 = onloadImg(src2);
+// p1.then(img => {
+//   console.log(img);
+//   box.appendChild(img);
+//   return p2;
+// }).then(img => {
+//   console.log(img);
+//   box.appendChild(img);
+// }).catch((e) => {
+//   console.log(e);
+// })
+async function onloadImgAsync(){
+  let [img1,img2] = await Promise.all([p1,p2]);
+  console.log(img1,img2);
+  box.appendChild(img1);
+  box.appendChild(img2);
+}
+onloadImgAsync();
+  </script>
+</body>
+</html>
